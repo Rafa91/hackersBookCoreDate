@@ -9,11 +9,24 @@
 /* Begin PBXBuildFile section */
 		05387AE01AD7CA2300F9954E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 05387ADF1AD7CA2300F9954E /* main.m */; };
 		05387AE31AD7CA2300F9954E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 05387AE21AD7CA2300F9954E /* AppDelegate.m */; };
-		05387AE61AD7CA2300F9954E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05387AE51AD7CA2300F9954E /* ViewController.m */; };
-		05387AE91AD7CA2300F9954E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05387AE71AD7CA2300F9954E /* Main.storyboard */; };
 		05387AEB1AD7CA2300F9954E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05387AEA1AD7CA2300F9954E /* Images.xcassets */; };
 		05387AEE1AD7CA2300F9954E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05387AEC1AD7CA2300F9954E /* LaunchScreen.xib */; };
 		05387AFA1AD7CA2300F9954E /* hackersBookCoreDateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 05387AF91AD7CA2300F9954E /* hackersBookCoreDateTests.m */; };
+		05387B061AD7CAEF00F9954E /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 05387B041AD7CAEF00F9954E /* Model.xcdatamodeld */; };
+		05387B091AD7D14F00F9954E /* BSIHackersBookBaseClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 05387B081AD7D14F00F9954E /* BSIHackersBookBaseClass.m */; };
+		05387B131AD7D22C00F9954E /* _BSIAuthor.m in Sources */ = {isa = PBXBuildFile; fileRef = 05387B0B1AD7D22C00F9954E /* _BSIAuthor.m */; };
+		05387B141AD7D22C00F9954E /* _BSIBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 05387B0C1AD7D22C00F9954E /* _BSIBook.m */; };
+		05387B151AD7D22C00F9954E /* _BSINote.m in Sources */ = {isa = PBXBuildFile; fileRef = 05387B0E1AD7D22C00F9954E /* _BSINote.m */; };
+		05387B161AD7D22C00F9954E /* _BSIPdf.m in Sources */ = {isa = PBXBuildFile; fileRef = 05387B101AD7D22C00F9954E /* _BSIPdf.m */; };
+		05387B171AD7D22C00F9954E /* _BSIPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 05387B121AD7D22C00F9954E /* _BSIPhoto.m */; };
+		05387B1B1AD7D23700F9954E /* _BSITag.m in Sources */ = {isa = PBXBuildFile; fileRef = 05387B1A1AD7D23700F9954E /* _BSITag.m */; };
+		05387B211AD7D26400F9954E /* BSIBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 05387B1E1AD7D26400F9954E /* BSIBook.m */; };
+		05387B221AD7D26400F9954E /* BSITag.m in Sources */ = {isa = PBXBuildFile; fileRef = 05387B201AD7D26400F9954E /* BSITag.m */; };
+		05387B2B1AD7D26D00F9954E /* BSIAuthor.m in Sources */ = {isa = PBXBuildFile; fileRef = 05387B241AD7D26D00F9954E /* BSIAuthor.m */; };
+		05387B2C1AD7D26D00F9954E /* BSINote.m in Sources */ = {isa = PBXBuildFile; fileRef = 05387B261AD7D26D00F9954E /* BSINote.m */; };
+		05387B2D1AD7D26D00F9954E /* BSIPdf.m in Sources */ = {isa = PBXBuildFile; fileRef = 05387B281AD7D26D00F9954E /* BSIPdf.m */; };
+		05387B2E1AD7D26D00F9954E /* BSIPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 05387B2A1AD7D26D00F9954E /* BSIPhoto.m */; };
+		05387B311AD7D2EE00F9954E /* AGTCoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 05387B2F1AD7D2EE00F9954E /* AGTCoreDataStack.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,14 +45,40 @@
 		05387ADF1AD7CA2300F9954E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		05387AE11AD7CA2300F9954E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		05387AE21AD7CA2300F9954E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		05387AE41AD7CA2300F9954E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		05387AE51AD7CA2300F9954E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		05387AE81AD7CA2300F9954E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		05387AEA1AD7CA2300F9954E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		05387AED1AD7CA2300F9954E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		05387AF31AD7CA2300F9954E /* hackersBookCoreDateTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = hackersBookCoreDateTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		05387AF81AD7CA2300F9954E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05387AF91AD7CA2300F9954E /* hackersBookCoreDateTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = hackersBookCoreDateTests.m; sourceTree = "<group>"; };
+		05387B051AD7CAEF00F9954E /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		05387B071AD7D14F00F9954E /* BSIHackersBookBaseClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSIHackersBookBaseClass.h; sourceTree = "<group>"; };
+		05387B081AD7D14F00F9954E /* BSIHackersBookBaseClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSIHackersBookBaseClass.m; sourceTree = "<group>"; };
+		05387B0A1AD7D22C00F9954E /* _BSIAuthor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _BSIAuthor.h; sourceTree = "<group>"; };
+		05387B0B1AD7D22C00F9954E /* _BSIAuthor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _BSIAuthor.m; sourceTree = "<group>"; };
+		05387B0C1AD7D22C00F9954E /* _BSIBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _BSIBook.m; sourceTree = "<group>"; };
+		05387B0D1AD7D22C00F9954E /* _BSINote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _BSINote.h; sourceTree = "<group>"; };
+		05387B0E1AD7D22C00F9954E /* _BSINote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _BSINote.m; sourceTree = "<group>"; };
+		05387B0F1AD7D22C00F9954E /* _BSIPdf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _BSIPdf.h; sourceTree = "<group>"; };
+		05387B101AD7D22C00F9954E /* _BSIPdf.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _BSIPdf.m; sourceTree = "<group>"; };
+		05387B111AD7D22C00F9954E /* _BSIPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _BSIPhoto.h; sourceTree = "<group>"; };
+		05387B121AD7D22C00F9954E /* _BSIPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _BSIPhoto.m; sourceTree = "<group>"; };
+		05387B181AD7D23700F9954E /* _BSIBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _BSIBook.h; sourceTree = "<group>"; };
+		05387B191AD7D23700F9954E /* _BSITag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _BSITag.h; sourceTree = "<group>"; };
+		05387B1A1AD7D23700F9954E /* _BSITag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _BSITag.m; sourceTree = "<group>"; };
+		05387B1D1AD7D26400F9954E /* BSIBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSIBook.h; sourceTree = "<group>"; };
+		05387B1E1AD7D26400F9954E /* BSIBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSIBook.m; sourceTree = "<group>"; };
+		05387B1F1AD7D26400F9954E /* BSITag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSITag.h; sourceTree = "<group>"; };
+		05387B201AD7D26400F9954E /* BSITag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSITag.m; sourceTree = "<group>"; };
+		05387B231AD7D26D00F9954E /* BSIAuthor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSIAuthor.h; sourceTree = "<group>"; };
+		05387B241AD7D26D00F9954E /* BSIAuthor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSIAuthor.m; sourceTree = "<group>"; };
+		05387B251AD7D26D00F9954E /* BSINote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSINote.h; sourceTree = "<group>"; };
+		05387B261AD7D26D00F9954E /* BSINote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSINote.m; sourceTree = "<group>"; };
+		05387B271AD7D26D00F9954E /* BSIPdf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSIPdf.h; sourceTree = "<group>"; };
+		05387B281AD7D26D00F9954E /* BSIPdf.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSIPdf.m; sourceTree = "<group>"; };
+		05387B291AD7D26D00F9954E /* BSIPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSIPhoto.h; sourceTree = "<group>"; };
+		05387B2A1AD7D26D00F9954E /* BSIPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSIPhoto.m; sourceTree = "<group>"; };
+		05387B2F1AD7D2EE00F9954E /* AGTCoreDataStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTCoreDataStack.m; sourceTree = "<group>"; };
+		05387B301AD7D2EE00F9954E /* AGTCoreDataStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTCoreDataStack.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,11 +120,9 @@
 		05387ADC1AD7CA2200F9954E /* hackersBookCoreDate */ = {
 			isa = PBXGroup;
 			children = (
+				05387B031AD7CAA700F9954E /* Models */,
 				05387AE11AD7CA2300F9954E /* AppDelegate.h */,
 				05387AE21AD7CA2300F9954E /* AppDelegate.m */,
-				05387AE41AD7CA2300F9954E /* ViewController.h */,
-				05387AE51AD7CA2300F9954E /* ViewController.m */,
-				05387AE71AD7CA2300F9954E /* Main.storyboard */,
 				05387AEA1AD7CA2300F9954E /* Images.xcassets */,
 				05387AEC1AD7CA2300F9954E /* LaunchScreen.xib */,
 				05387ADD1AD7CA2200F9954E /* Supporting Files */,
@@ -117,6 +154,50 @@
 				05387AF81AD7CA2300F9954E /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		05387B031AD7CAA700F9954E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				05387B231AD7D26D00F9954E /* BSIAuthor.h */,
+				05387B241AD7D26D00F9954E /* BSIAuthor.m */,
+				05387B251AD7D26D00F9954E /* BSINote.h */,
+				05387B261AD7D26D00F9954E /* BSINote.m */,
+				05387B271AD7D26D00F9954E /* BSIPdf.h */,
+				05387B281AD7D26D00F9954E /* BSIPdf.m */,
+				05387B291AD7D26D00F9954E /* BSIPhoto.h */,
+				05387B2A1AD7D26D00F9954E /* BSIPhoto.m */,
+				05387B1D1AD7D26400F9954E /* BSIBook.h */,
+				05387B1E1AD7D26400F9954E /* BSIBook.m */,
+				05387B1F1AD7D26400F9954E /* BSITag.h */,
+				05387B201AD7D26400F9954E /* BSITag.m */,
+				05387B1C1AD7D23D00F9954E /* Machine */,
+				05387B041AD7CAEF00F9954E /* Model.xcdatamodeld */,
+				05387B071AD7D14F00F9954E /* BSIHackersBookBaseClass.h */,
+				05387B081AD7D14F00F9954E /* BSIHackersBookBaseClass.m */,
+				05387B2F1AD7D2EE00F9954E /* AGTCoreDataStack.m */,
+				05387B301AD7D2EE00F9954E /* AGTCoreDataStack.h */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		05387B1C1AD7D23D00F9954E /* Machine */ = {
+			isa = PBXGroup;
+			children = (
+				05387B181AD7D23700F9954E /* _BSIBook.h */,
+				05387B191AD7D23700F9954E /* _BSITag.h */,
+				05387B1A1AD7D23700F9954E /* _BSITag.m */,
+				05387B0A1AD7D22C00F9954E /* _BSIAuthor.h */,
+				05387B0B1AD7D22C00F9954E /* _BSIAuthor.m */,
+				05387B0C1AD7D22C00F9954E /* _BSIBook.m */,
+				05387B0D1AD7D22C00F9954E /* _BSINote.h */,
+				05387B0E1AD7D22C00F9954E /* _BSINote.m */,
+				05387B0F1AD7D22C00F9954E /* _BSIPdf.h */,
+				05387B101AD7D22C00F9954E /* _BSIPdf.m */,
+				05387B111AD7D22C00F9954E /* _BSIPhoto.h */,
+				05387B121AD7D22C00F9954E /* _BSIPhoto.m */,
+			);
+			name = Machine;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,7 +280,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05387AE91AD7CA2300F9954E /* Main.storyboard in Resources */,
 				05387AEE1AD7CA2300F9954E /* LaunchScreen.xib in Resources */,
 				05387AEB1AD7CA2300F9954E /* Images.xcassets in Resources */,
 			);
@@ -219,9 +299,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05387AE61AD7CA2300F9954E /* ViewController.m in Sources */,
+				05387B151AD7D22C00F9954E /* _BSINote.m in Sources */,
+				05387B1B1AD7D23700F9954E /* _BSITag.m in Sources */,
 				05387AE31AD7CA2300F9954E /* AppDelegate.m in Sources */,
+				05387B311AD7D2EE00F9954E /* AGTCoreDataStack.m in Sources */,
+				05387B2B1AD7D26D00F9954E /* BSIAuthor.m in Sources */,
+				05387B141AD7D22C00F9954E /* _BSIBook.m in Sources */,
+				05387B161AD7D22C00F9954E /* _BSIPdf.m in Sources */,
+				05387B221AD7D26400F9954E /* BSITag.m in Sources */,
 				05387AE01AD7CA2300F9954E /* main.m in Sources */,
+				05387B061AD7CAEF00F9954E /* Model.xcdatamodeld in Sources */,
+				05387B091AD7D14F00F9954E /* BSIHackersBookBaseClass.m in Sources */,
+				05387B2C1AD7D26D00F9954E /* BSINote.m in Sources */,
+				05387B171AD7D22C00F9954E /* _BSIPhoto.m in Sources */,
+				05387B2D1AD7D26D00F9954E /* BSIPdf.m in Sources */,
+				05387B2E1AD7D26D00F9954E /* BSIPhoto.m in Sources */,
+				05387B211AD7D26400F9954E /* BSIBook.m in Sources */,
+				05387B131AD7D22C00F9954E /* _BSIAuthor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,14 +338,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		05387AE71AD7CA2300F9954E /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				05387AE81AD7CA2300F9954E /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		05387AEC1AD7CA2300F9954E /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -428,6 +514,19 @@
 			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		05387B041AD7CAEF00F9954E /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				05387B051AD7CAEF00F9954E /* Model.xcdatamodel */,
+			);
+			currentVersion = 05387B051AD7CAEF00F9954E /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 05387AD21AD7CA2200F9954E /* Project object */;
 }

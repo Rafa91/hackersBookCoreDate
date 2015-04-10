@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7549" systemVersion="14D131" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Author" representedClassName="BSIAuthor" syncable="YES">
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <relationship name="books" toMany="YES" deletionRule="Nullify" destinationEntity="Book" inverseName="authors" inverseEntity="Book" syncable="YES"/>
+    </entity>
+    <entity name="Book" representedClassName="BSIBook" syncable="YES">
+        <attribute name="creationDate" attributeType="Date" syncable="YES"/>
+        <attribute name="frontPageURL" attributeType="String" syncable="YES"/>
+        <attribute name="isFavorite" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="modificationDate" attributeType="Date" indexed="YES" syncable="YES"/>
+        <attribute name="pdfURL" attributeType="String" syncable="YES"/>
+        <attribute name="titleBook" attributeType="String" indexed="YES" syncable="YES"/>
+        <relationship name="authors" toMany="YES" deletionRule="Cascade" destinationEntity="Author" inverseName="books" inverseEntity="Author" syncable="YES"/>
+        <relationship name="frontPage" maxCount="1" deletionRule="Cascade" destinationEntity="Photo" inverseName="frontPage" inverseEntity="Photo" syncable="YES"/>
+        <relationship name="notes" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Note" inverseName="book" inverseEntity="Note" syncable="YES"/>
+        <relationship name="pdf" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Pdf" inverseName="book" inverseEntity="Pdf" syncable="YES"/>
+        <relationship name="tags" toMany="YES" deletionRule="Cascade" destinationEntity="Tag" inverseName="books" inverseEntity="Tag" syncable="YES"/>
+    </entity>
+    <entity name="Note" representedClassName="BSINote" syncable="YES">
+        <attribute name="creationDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="modificationDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="book" maxCount="1" deletionRule="Nullify" destinationEntity="Book" inverseName="notes" inverseEntity="Book" syncable="YES"/>
+        <relationship name="image" maxCount="1" deletionRule="Cascade" destinationEntity="Photo" inverseName="noteImage" inverseEntity="Photo" syncable="YES"/>
+    </entity>
+    <entity name="Pdf" representedClassName="BSIPdf" syncable="YES">
+        <attribute name="pdfData" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
+        <relationship name="book" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Book" inverseName="pdf" inverseEntity="Book" syncable="YES"/>
+    </entity>
+    <entity name="Photo" representedClassName="BSIPhoto" syncable="YES">
+        <attribute name="imageData" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
+        <relationship name="frontPage" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Book" inverseName="frontPage" inverseEntity="Book" syncable="YES"/>
+        <relationship name="noteImage" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Note" inverseName="image" inverseEntity="Note" syncable="YES"/>
+    </entity>
+    <entity name="Tag" representedClassName="BSITag" syncable="YES">
+        <attribute name="name" attributeType="String" indexed="YES" syncable="YES"/>
+        <relationship name="books" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Book" inverseName="tags" inverseEntity="Book" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Book" positionX="-29" positionY="-279" width="128" height="208"/>
+        <element name="Pdf" positionX="-288" positionY="-18" width="128" height="73"/>
+        <element name="Author" positionX="-252" positionY="-207" width="128" height="73"/>
+        <element name="Photo" positionX="241" positionY="-189" width="128" height="88"/>
+        <element name="Note" positionX="214" positionY="99" width="128" height="133"/>
+        <element name="Tag" positionX="-27" positionY="135" width="128" height="73"/>
+    </elements>
+</model>

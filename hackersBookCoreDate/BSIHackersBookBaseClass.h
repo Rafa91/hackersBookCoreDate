@@ -1,15 +1,14 @@
 //
-//  ViewController.h
+//  BSIHackersBookBaseClass.h
 //  hackersBookCoreDate
 //
 //  Created by Rafael Navarro on 10/4/15.
 //  Copyright (c) 2015 Beside. All rights reserved.
 //
+@import CoreData;
 
-#import <UIKit/UIKit.h>
+@interface BSIHackersBookBaseClass : NSManagedObject
 
-@interface ViewController : UIViewController
-
++(NSArray *) observableKeys;
 
 @end
-
