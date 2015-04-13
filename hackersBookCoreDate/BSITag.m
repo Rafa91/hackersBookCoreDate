@@ -17,4 +17,10 @@
     
 }
 
++(NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key{
+    
+    return [NSSet setWithObject:BSITagAttributes.name];
+    
+}
+
 @end

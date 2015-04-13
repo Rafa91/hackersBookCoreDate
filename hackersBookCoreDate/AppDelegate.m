@@ -14,6 +14,11 @@
 #import "BSIAuthor.h"
 #import "BSIPhoto.h"
 #import "BSIPdf.h"
+#import "BSIBooksViewController.h"
+#import "BookViewController.h"
+#import "UIViewController+Navigation.h"
+#import "Settings.h"
+#import "AGTCoreDataStack+AGTCoreDataStack_DownloadedData.h"
 
 @interface AppDelegate ()
 
@@ -30,7 +35,29 @@
     
     self.stack = [AGTCoreDataStack coreDataStackWithModelName:@"Model"];
     
+    [self configureFirstAppear];
+    
     //[self addDummyData];
+    NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[BSIBook entityName]];
+    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:BSIBookAttributes.titleBook
+                                                          ascending:YES
+                                                           selector:@selector(caseInsensitiveCompare:)],
+                            [NSSortDescriptor sortDescriptorWithKey:BSINoteAttributes.modificationDate
+                                                          ascending:NO]];
+    req.fetchBatchSize = 20;
+    NSFetchedResultsController *fc = [[NSFetchedResultsController alloc] initWithFetchRequest:req
+                                                                         managedObjectContext:self.stack.context
+                                                                           sectionNameKeyPath:nil
+                                                                                    cacheName:nil];
+    
+    BSIBooksViewController *bsVC = [[BSIBooksViewController alloc] initWithFetchedResultsController:fc
+                                                                                             style:UITableViewStylePlain];
+    BookViewController *bVC= [self bookViewControllerWithLastBook];
+    bsVC.delegate = bVC;
+    UISplitViewController *split = [[UISplitViewController alloc]init];
+    split.viewControllers=@[[bsVC wrappedInNavigation],[bVC wrappedInNavigation]];
+    
+    self.window.rootViewController = split;
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
@@ -61,6 +88,8 @@
 }
 
 -(void) addDummyData{
+    
+    [self.stack zapAllData];
     
     BSITag *tag1 = [BSITag tagWithName:@"version Control"
                                context:self.stack.context];
@@ -108,12 +137,12 @@
     req.predicate = [NSPredicate predicateWithFormat:@"name = %@", n1.name];
     NSArray *results = [self.stack executeFetchRequest:req
                                             errorBlock:^(NSError *error) {
-                                                NSLog(@"error al buscar mozoooo %@", error);
+                                                NSLog(@"error al buscar %@", error);
                                             }];
     NSLog(@"%@", results);
     
     //Borrar
-    [self.stack.context deleteObject:n1];
+    //[self.stack.context deleteObject:n1];
 
     //Guardar
     [self.stack saveWithErrorBlock:^(NSError *error) {
@@ -121,10 +150,44 @@
     }];
 }
 
+-(void)configureFirstAppear{
+    
+    //Comprobamos si tenemos guardado el JSON
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    if (![ud objectForKey:DOWNLOAD_FINISH]) {
+        
+        //nos vamos a segundo plano a descargar el json
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
+            
+            NSURL *jsonURL = [NSURL URLWithString:@"https://keepcodigtest.blob.core.windows.net/containerblobstest/books_readable.json"];
+            NSData *data = [NSData dataWithContentsOfURL:jsonURL];
+            //cuando la tengo, me voy a primer plano
+            dispatch_async(dispatch_get_main_queue(), ^{
+                //introduzco en core data lo que me descargo
+                [self.stack addDownloadedData:data];
+            });
+            
+        });
+    }
+}
                             
-                            
-                            
-                            
+-(BookViewController *) bookViewControllerWithLastBook{
+    
+    //compruebo si hay libro guardado
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    NSData *data = [ud objectForKey:LAST_SELECTED_BOOK];
+    if (ud) {
+        //creo el controlador con el libro guardado
+        return [[BookViewController alloc]initWithModel:[BSIBook objectWithArchivedURIRepresentation:data
+                                                                                             context:self.stack.context]];
+    //si no hay libro
+    }else{
+        //creo el controlador por defecto
+        return [[BookViewController alloc] init];
+    }
+    
+}
+
                             
                             
                             
