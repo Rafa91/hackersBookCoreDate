@@ -10,6 +10,7 @@
 #import "BSIBook.h"
 #import "BSIPhoto.h"
 #import "BSIBooksViewController.h"
+#import "BSITag.h"
 
 @interface BookViewController ()
 
@@ -45,6 +46,7 @@
 
 #pragma mark - actions
 - (IBAction)readBook:(id)sender {
+
 }
 
 - (IBAction)changeStateFavorite:(id)sender {

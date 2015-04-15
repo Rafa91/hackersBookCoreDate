@@ -39,11 +39,11 @@
         <relationship name="books" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Book" inverseName="tags" inverseEntity="Book" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Book" positionX="-29" positionY="-279" width="128" height="208"/>
-        <element name="Pdf" positionX="-288" positionY="-18" width="128" height="73"/>
         <element name="Author" positionX="-252" positionY="-207" width="128" height="73"/>
-        <element name="Photo" positionX="241" positionY="-189" width="128" height="88"/>
+        <element name="Book" positionX="-29" positionY="-279" width="128" height="208"/>
         <element name="Note" positionX="214" positionY="99" width="128" height="133"/>
-        <element name="Tag" positionX="-27" positionY="135" width="128" height="73"/>
+        <element name="Pdf" positionX="-288" positionY="-18" width="128" height="73"/>
+        <element name="Photo" positionX="241" positionY="-189" width="128" height="88"/>
+        <element name="Tag" positionX="-27" positionY="135" width="128" height="75"/>
     </elements>
 </model>

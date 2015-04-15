@@ -35,19 +35,18 @@
     
     self.stack = [AGTCoreDataStack coreDataStackWithModelName:@"Model"];
     
+    [self.stack zapAllData];
     [self configureFirstAppear];
-    
+
     //[self addDummyData];
-    NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[BSIBook entityName]];
-    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:BSIBookAttributes.titleBook
+    NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[BSITag entityName]];
+    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:BSITagAttributes.name
                                                           ascending:YES
-                                                           selector:@selector(caseInsensitiveCompare:)],
-                            [NSSortDescriptor sortDescriptorWithKey:BSINoteAttributes.modificationDate
-                                                          ascending:NO]];
+                                                           selector:@selector(caseInsensitiveCompare:)]];
     req.fetchBatchSize = 20;
     NSFetchedResultsController *fc = [[NSFetchedResultsController alloc] initWithFetchRequest:req
                                                                          managedObjectContext:self.stack.context
-                                                                           sectionNameKeyPath:nil
+                                                                           sectionNameKeyPath:BSITagAttributes.name
                                                                                     cacheName:nil];
     
     BSIBooksViewController *bsVC = [[BSIBooksViewController alloc] initWithFetchedResultsController:fc
@@ -125,6 +124,21 @@
                                 context:self.stack.context];
     
     NSLog(@" %@ \n %@", n1, n2);
+    
+    BSITag *tag3 = [BSITag tagWithName:@"git2"
+                               context:self.stack.context];
+    NSSet *tags2 = [NSSet setWithObjects:tag2, tag3, nil];
+    
+
+    
+    BSIBook *b2 = [BSIBook bookWithTitle:@"Pro Git2"
+                            frontPageURL:@"http://hackershelf.com/media/cache/b4/24/b42409de128aa7f1c9abbbfa549914de.jpg"
+                                  pdfURL:@"https://progit2.s3.amazonaws.com/en/2015-03-06-439c2/progit-en.376.pdf"
+                              isFavorite:NO
+                                    tags:tags
+                                 authors:authors
+                                 context:self.stack.context];
+    b1.frontPage.imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:b1.frontPageURL]];
     
     //Prueba de búsqueda
     NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[BSINote entityName]];

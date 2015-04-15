@@ -7,7 +7,7 @@
 
 @interface BSIBook ()
 
--(NSSet *) authorsFromJSON:(NSString *) stringJSON
+-(void) authorsFromJSON:(NSString *) stringJSON
                    context:(NSManagedObjectContext *)context;
 
 @end
@@ -104,14 +104,12 @@
 
 -(void) setWithDictionary:(NSDictionary *) dict{
     
-    NSSet *authors = [self authorsFromJSON:[dict objectForKey:AUTHORS]
+    [self authorsFromJSON:[dict objectForKey:AUTHORS]
                                    context:self.managedObjectContext];
     
-    NSSet *tags = [self tagsFromJSON:[dict objectForKey:TAGS]
+    [self tagsFromJSON:[dict objectForKey:TAGS]
                              context:self.managedObjectContext];
     
-    self.authors = authors;
-    self.tags = tags;
 }
 
 -(void) updateImage{
@@ -167,41 +165,37 @@
 
 #pragma mark - methods for parsing
 
--(NSSet *) tagsFromJSON:(NSString *) stringJSON
+-(void) tagsFromJSON:(NSString *) stringJSON
                 context:(NSManagedObjectContext *)context{
     
-    NSMutableArray *aux = [NSMutableArray arrayWithObjects: nil];
     
     //saco cada uno de los tags
     NSArray *tags = [stringJSON componentsSeparatedByString:@", "];
     
     //por cada uno, busco si ya existe
     for (NSString *name in tags) {
-        NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[BSITag entityName]];
-        req.predicate = [NSPredicate predicateWithFormat:@"name = %@", name];
-        NSError *err;
-        NSArray *results = [context executeFetchRequest:req
-                                                  error:&err];
-        if (results == nil) {
-            //si existe lo agrego al array
-            [aux addObject:[results objectAtIndex:0]];
-        }else{
-            //si no existe lo creo y lo agrego
-            [aux addObject:[BSITag tagWithName:name
-                                       context:context]];
-        }
         
+        NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[BSITag entityName]];
+        req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:BSITagAttributes.name
+                                                              ascending:YES
+                                                               selector:@selector(caseInsensitiveCompare:)]];
+        req.fetchBatchSize = 20;
+        req.predicate= [NSPredicate predicateWithFormat:@"name = %@",name];
+        NSError *error;
+        NSArray *result = [self.managedObjectContext executeFetchRequest:req
+                                                                   error:&error];
+        if ([result count] != 0 ) {
+            [self addTagsObject:[result lastObject]];
+        }else{
+            [self addTagsObject:[BSITag tagWithName:name
+                                            context:context]];
+        }
     }
-    
-    //devuelvo el nsset
-    return [NSSet setWithArray:[NSArray arrayWithArray:aux]];
     
 }
 
--(NSSet *) authorsFromJSON:(NSString *) stringJSON
+-(void) authorsFromJSON:(NSString *) stringJSON
                    context:(NSManagedObjectContext *)context{
-    
-    NSMutableArray *aux = [NSMutableArray arrayWithObjects: nil];
     
     //saco cada uno de los tags
     NSArray *authors = [stringJSON componentsSeparatedByString:@", "];
@@ -209,23 +203,21 @@
     //por cada uno, busco si ya existe
     for (NSString *name in authors) {
         NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[BSIAuthor entityName]];
-        req.predicate = [NSPredicate predicateWithFormat:@"name = %@", name];
-        NSError *err;
-        NSArray *results = [context executeFetchRequest:req
-                                              error:&err];
-        if (results == nil) {
-            //si existe lo agrego al array
-            [aux addObject:[results objectAtIndex:0]];
+        req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:BSIAuthorAttributes.name
+                                                              ascending:YES
+                                                               selector:@selector(caseInsensitiveCompare:)]];
+        req.fetchBatchSize = 20;
+        req.predicate= [NSPredicate predicateWithFormat:@"name = %@",name];
+        NSError *error;
+        NSArray *result = [self.managedObjectContext executeFetchRequest:req
+                                                                   error:&error];
+        if ([result count] != 0 ) {
+            [self addAuthorsObject:[result lastObject]];
         }else{
-            //si no existe lo creo y lo agrego
-            [aux addObject:[BSIAuthor authorWithName:name
-                                             context:context]];
+            [self addAuthorsObject:[BSIAuthor authorWithName:name
+                                                     context:context]];
         }
-        
     }
-    
-    //devuelvo el nsset
-    return [NSSet setWithArray:[NSArray arrayWithArray:aux]];
     
 }
 

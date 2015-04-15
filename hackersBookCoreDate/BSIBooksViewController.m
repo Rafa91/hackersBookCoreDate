@@ -11,6 +11,7 @@
 #import "BSIBook.h"
 #import "BSIPhoto.h"
 #import "Settings.h"
+#import "BSITag.h"
 
 @interface BSIBooksViewController ()
 
@@ -25,11 +26,17 @@
     
 }
 
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+
+    return [[[self.fetchedResultsController.fetchedObjects objectAtIndex:section] books] count];
+
+}
+
 -(UITableViewCell *)tableView:(UITableView *)tableView
         cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    //Averiguar cual es el libro
-    BSIBook *b = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    BSITag *t = [self.fetchedResultsController.fetchedObjects objectAtIndex:[indexPath section]];
+    BSIBook *b = [[t.books allObjects] objectAtIndex: [indexPath row]];
     
     //Crear una celda
     static NSString *cellID= @"bookCell";
@@ -50,27 +57,12 @@
     
 }
 
--(void) tableView:(UITableView *)tableView
-commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
-forRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        //inmediatamente lo elimino del modelo
-        
-        //averiguar la libro
-        BSIBook *b = [self.fetchedResultsController objectAtIndexPath:indexPath];
-        
-        //eliminarla
-        [self.fetchedResultsController.managedObjectContext deleteObject:b];
-        
-        
-    }
-    
-}
+
 
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    BSIBook *aBook = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    BSITag *t = [self.fetchedResultsController.fetchedObjects objectAtIndex:[indexPath section]];
+    BSIBook *aBook = [[t.books allObjects] objectAtIndex: [indexPath row]];
     
 
     if ([self.delegate respondsToSelector:@selector(booksViewController:didSelectedBook:) ]) {
