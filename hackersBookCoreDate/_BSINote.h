@@ -14,10 +14,12 @@ extern const struct BSINoteAttributes {
 extern const struct BSINoteRelationships {
 	__unsafe_unretained NSString *book;
 	__unsafe_unretained NSString *image;
+	__unsafe_unretained NSString *location;
 } BSINoteRelationships;
 
 @class BSIBook;
 @class BSIPhoto;
+@class BSILocation;
 
 @interface BSINoteID : NSManagedObjectID {}
 @end
@@ -52,6 +54,10 @@ extern const struct BSINoteRelationships {
 
 //- (BOOL)validateImage:(id*)value_ error:(NSError**)error_;
 
+@property (nonatomic, strong) BSILocation *location;
+
+//- (BOOL)validateLocation:(id*)value_ error:(NSError**)error_;
+
 @end
 
 @interface _BSINote (CoreDataGeneratedPrimitiveAccessors)
@@ -73,5 +79,8 @@ extern const struct BSINoteRelationships {
 
 - (BSIPhoto*)primitiveImage;
 - (void)setPrimitiveImage:(BSIPhoto*)value;
+
+- (BSILocation*)primitiveLocation;
+- (void)setPrimitiveLocation:(BSILocation*)value;
 
 @end

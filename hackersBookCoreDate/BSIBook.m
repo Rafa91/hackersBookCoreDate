@@ -102,6 +102,7 @@
 
 #pragma mark - set properties
 
+
 -(void) setWithDictionary:(NSDictionary *) dict{
     
     [self authorsFromJSON:[dict objectForKey:AUTHORS]

@@ -7,6 +7,7 @@
 //
 
 #import "AGTCoreDataTableViewController.h"
+
 @class BSIBooksViewController;
 @class BSIBook;
 
@@ -19,6 +20,8 @@
 @end
 
 @interface BSIBooksViewController : AGTCoreDataTableViewController
+
+@property (strong, nonatomic) UISearchController *searchController;
 
 @property (weak, nonatomic) id<BSIBooksViewControllerDelegate> delegate;
 

@@ -2,76 +2,213 @@
 //  BSINoteViewController.m
 //  hackersBookCoreDate
 //
-//  Created by Rafael Navarro on 11/4/15.
+//  Created by Rafael Navarro on 20/4/15.
 //  Copyright (c) 2015 Beside. All rights reserved.
 //
 
 #import "BSINoteViewController.h"
 #import "BSINote.h"
 #import "BSIPhoto.h"
+#import "BSIBook.h"
+#import "BSIPhotoViewController.h"
 
-@interface BSINoteViewController ()
+@interface BSINoteViewController () <UITextFieldDelegate>
+
+@property (nonatomic, strong) BSINote *model;
+@property (nonatomic) BOOL new;
+@property (nonatomic) BOOL deleteCurrentNote;
 
 @end
 
 @implementation BSINoteViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    self.title = @"Notes";
-}
-
--(UITableViewCell *)tableView:(UITableView *)tableView
-        cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+#pragma mark - init
+-(id) initWithModel: (BSINote *) model{
     
-    //Averiguar cual es la nota
-    BSINote *n = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    
-    //Crear una celda
-    static NSString *cellID= @"noteCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-    if (!cell) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle
-                                     reuseIdentifier:cellID];
+    if (self = [super initWithNibName:nil bundle:nil]) {
+        _model = model;
     }
     
-    //Configurarla (sincronizar libro y celda)
-    cell.textLabel.text = n.name;
-    cell.detailTextLabel.text = n.text;
-    cell.imageView.image = [n.image image];
+    return self;
+}
+
+-(id) initForNewNoteInBook: (BSIBook *) book{
     
-    
-    //devolverla
-    return cell;
+    BSINote *newNote = [BSINote noteWithname:@""
+                                        text:@""
+                                       image:[BSIPhoto insertInManagedObjectContext:book.managedObjectContext]
+                                        book:book
+                                     context:book.managedObjectContext];
+    _new = YES;
+    return [self initWithModel:newNote];
     
 }
 
--(void) tableView:(UITableView *)tableView
-commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
-forRowAtIndexPath:(NSIndexPath *)indexPath{
+#pragma mark - View LifeCycle
+
+-(void) viewWillAppear:(BOOL)animated{
     
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        //inmediatamente lo elimino del modelo
-        
-        //averiguar la libro
-        BSINote *n = [self.fetchedResultsController objectAtIndexPath:indexPath];
-        
-        //eliminarla
-        [self.fetchedResultsController.managedObjectContext deleteObject:n];
-        
-        
+    [super viewWillAppear:animated];
+    
+    NSDateFormatter *fmt = [NSDateFormatter new];
+    fmt.dateStyle = NSDateFormatterLongStyle;
+    self.modificationDateView.text = [fmt stringFromDate:self.model.modificationDate];
+    self.nameView.text = self.model.name;
+    self.textView.text = self.model.text;
+    
+    UIImage *img = self.model.image.image;
+    if (!img) {
+        img = [UIImage imageNamed:@"noImage.png"];
     }
+    self.photoView.image = img;
+    [self startObservingKeyboard];
+    [self setupAccessoryInputView];
+    if (self.new) {
+        UIBarButtonItem *cancel = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
+                                                                               target:self
+                                                                               action:@selector(cancel:)];
+        self.navigationItem.rightBarButtonItem = cancel;
+    }
+    self.nameView.delegate = self;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                          action:@selector(displayDetailPhoto:)];
+    [self.photoView addGestureRecognizer:tap];
+}
+
+-(void) viewWillDisappear:(BOOL)animated{
+    
+    [super viewWillDisappear:animated];
+    if (self.deleteCurrentNote) {
+        [self.model.managedObjectContext deleteObject:self.model];
+    }else{
+        self.model.text = self.textView.text;
+        self.model.image.image = self.photoView.image;
+        self.model.name = self.nameView.text;
+    }
+    [self stopObservingKeyboard];
     
 }
 
-//-(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-//    
-//    BSIBook *b = [self.fetchedResultsController objectAtIndexPath:indexPath];
-//    
-//    
-//    [self.navigationController pushViewController:[[BookViewController alloc]initWithModel:b]
-//                                         animated:YES];
-//}
+#pragma mark - keyboard
+
+-(void) startObservingKeyboard{
+    
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    [nc addObserver:self
+           selector:@selector(notifyThatKeyboardWillAppear:)
+               name:UIKeyboardWillShowNotification
+             object:nil];
+    [nc addObserver:self
+           selector:@selector(notifyThatKeyboardWillDissappear:)
+               name:UIKeyboardWillHideNotification
+             object:nil];
+    
+}
+
+-(void) stopObservingKeyboard{
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    [nc removeObserver:self];
+    
+}
+
+-(void) notifyThatKeyboardWillAppear: (NSNotification *) notification{
+    
+    if ([self.textView isFirstResponder]) {
+        //extraer user info
+        NSDictionary *dict = notification.userInfo;
+        //extraer la duración de la animación
+        double duration = [[dict objectForKey:UIKeyboardAnimationDurationUserInfoKey ]doubleValue];
+        // cambiar las propiedades de la caja de texteo
+        [UIView animateWithDuration:duration
+                              delay:0
+                            options:0
+                         animations:^{
+                             
+                             self.textView.frame = CGRectMake(self.modificationDateView.frame.origin.x, self.modificationDateView.frame.origin.y, self.textView.frame.size.width, self.textView.frame.size.height);
+                             
+                             
+                         } completion:nil];
+        [UIView animateWithDuration:duration
+                         animations:^{
+                             self.textView.alpha = 0.8;
+                         } completion:nil];
+    }
+
+}
+
+-(void) notifyThatKeyboardWillDissappear: (NSNotification *) notification{
+    
+    if ([self.textView isFirstResponder]) {
+        //extraer user info
+        NSDictionary *dict = notification.userInfo;
+        //extraer la duración de la animación
+        double duration = [[dict objectForKey:UIKeyboardAnimationDurationUserInfoKey ]doubleValue];
+        // cambiar las propiedades de la caja de texteo
+        [UIView animateWithDuration:duration
+                              delay:0
+                            options:0
+                         animations:^{
+                             
+                             self.textView.frame = CGRectMake(0, 527, self.textView.frame.size.width, self.textView.frame.size.height);
+                             
+                             
+                         } completion:nil];
+        [UIView animateWithDuration:duration
+                         animations:^{
+                             self.textView.alpha = 1;
+                         } completion:nil];
+    }
+}
+
+
+-(void) setupAccessoryInputView{
+    
+    //creamos una barra
+    UIToolbar *bar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    //añadimos botones
+    UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                                                          target:self
+                                                                          action:@selector(dismissKeyboard:)];
+    UIBarButtonItem *sep = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                                         target:nil
+                                                                         action:nil];
+    [bar setItems:@[sep, done]];
+    //la asignamos como accessoryInputView
+    self.textView.inputAccessoryView = bar;
+    self.nameView.inputAccessoryView = bar;
+    
+}
+
+-(void) dismissKeyboard: (id)sender{
+    
+    [self.view endEditing:YES];
+    
+}
+
+#pragma mark - delegate
+-(BOOL) textFieldShouldReturn:(UITextField *)textField{
+    
+    //podríamos validar el texto
+    [textField resignFirstResponder];
+    return YES;
+    
+}
+
+#pragma mark - actions
+
+-(void) cancel:(id) sender{
+    
+    self.deleteCurrentNote = YES;
+    [self.navigationController popViewControllerAnimated:YES];
+    
+}
+
+-(void) displayDetailPhoto:(id) sender {
+
+    [self.navigationController pushViewController:[[BSIPhotoViewController alloc] initWithModel:self.model.image]
+                                         animated:YES];
+    
+}
 
 
 @end

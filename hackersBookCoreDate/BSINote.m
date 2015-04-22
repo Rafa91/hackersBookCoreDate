@@ -9,6 +9,13 @@
 
 @implementation BSINote
 
+-(BOOL) hasLocation{
+    
+    return (nil == self.location);
+    
+}
+
+#pragma mark - class Methods
 +(NSArray *) observableKeys{
     
     return @[BSINoteAttributes.name, BSINoteAttributes.text, @"image.imageData"];
@@ -42,6 +49,12 @@
     
     
     self.modificationDate = [NSDate date];
+    
+}
+
+-(void) awakeFromInsert{
+    [super awakeFromInsert];
+    
     
 }
 

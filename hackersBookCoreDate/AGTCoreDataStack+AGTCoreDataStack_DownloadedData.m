@@ -8,6 +8,7 @@
 
 #import "AGTCoreDataStack+AGTCoreDataStack_DownloadedData.h"
 #import "BSIBook.h"
+#import "BSITag.h"
 #import "Settings.h"
 
 @implementation AGTCoreDataStack (AGTCoreDataStack_DownloadedData)
@@ -28,6 +29,7 @@
             [aBook setWithDictionary:dic];
             [aBook updateImage];
         }
+        //[BSITag tagWithName:@"Favorite" context:self.context];
         [self saveWithErrorBlock:^(NSError *error) {
             NSLog(@"Error al guardar %@", error.localizedDescription);
         }];

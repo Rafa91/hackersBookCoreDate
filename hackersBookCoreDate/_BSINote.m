@@ -13,6 +13,7 @@ const struct BSINoteAttributes BSINoteAttributes = {
 const struct BSINoteRelationships BSINoteRelationships = {
 	.book = @"book",
 	.image = @"image",
+	.location = @"location",
 };
 
 @implementation BSINoteID
@@ -55,6 +56,8 @@ const struct BSINoteRelationships BSINoteRelationships = {
 @dynamic book;
 
 @dynamic image;
+
+@dynamic location;
 
 @end
 

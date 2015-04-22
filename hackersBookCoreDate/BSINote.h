@@ -4,6 +4,8 @@
 
 @interface BSINote : _BSINote {}
 
+@property (nonatomic, readonly) BOOL hasLocation;
+
 +(instancetype) noteWithname:(NSString *) name
                         text:(NSString *) text
                        image:(BSIPhoto *) image

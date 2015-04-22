@@ -31,9 +31,20 @@
 		05387B381AD846EF00F9954E /* BSIBooksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05387B371AD846EF00F9954E /* BSIBooksViewController.m */; };
 		054E4FBB1AD90CBB00BD1F0E /* BookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 054E4FB91AD90CBB00BD1F0E /* BookViewController.m */; };
 		054E4FBC1AD90CBB00BD1F0E /* BookViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 054E4FBA1AD90CBB00BD1F0E /* BookViewController.xib */; };
-		054E4FBF1AD9495500BD1F0E /* BSINoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 054E4FBE1AD9495500BD1F0E /* BSINoteViewController.m */; };
 		054E4FC21ADA638C00BD1F0E /* UIViewController+Navigation.m in Sources */ = {isa = PBXBuildFile; fileRef = 054E4FC11ADA638C00BD1F0E /* UIViewController+Navigation.m */; };
 		054E4FC71ADA688200BD1F0E /* AGTCoreDataStack+AGTCoreDataStack_DownloadedData.m in Sources */ = {isa = PBXBuildFile; fileRef = 054E4FC61ADA688200BD1F0E /* AGTCoreDataStack+AGTCoreDataStack_DownloadedData.m */; };
+		054E6C051AE4175F006A9D67 /* BSINoteCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 054E6C041AE4175F006A9D67 /* BSINoteCollectionViewCell.xib */; };
+		054E6C081AE41978006A9D67 /* BSINoteCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 054E6C071AE41978006A9D67 /* BSINoteCollectionViewCell.m */; };
+		054E6C0B1AE41BC9006A9D67 /* BSINotesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 054E6C0A1AE41BC8006A9D67 /* BSINotesViewController.m */; };
+		056F03201AE6F60900CA2C07 /* _BSILocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 056F031F1AE6F60900CA2C07 /* _BSILocation.m */; };
+		056F03231AE6F61600CA2C07 /* BSILocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 056F03221AE6F61600CA2C07 /* BSILocation.m */; };
+		0580923E1AE441AB00A92B8D /* noImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 0580923D1AE441AB00A92B8D /* noImage.png */; };
+		058092421AE4F80C00A92B8D /* BSINoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 058092401AE4F80C00A92B8D /* BSINoteViewController.m */; };
+		058092431AE4F80C00A92B8D /* BSINoteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 058092411AE4F80C00A92B8D /* BSINoteViewController.xib */; };
+		058092451AE4FA7400A92B8D /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 058092441AE4FA7400A92B8D /* MapKit.framework */; };
+		058092491AE65E4600A92B8D /* BSIPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 058092471AE65E4600A92B8D /* BSIPhotoViewController.m */; };
+		0580924A1AE65E4600A92B8D /* BSIPhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 058092481AE65E4600A92B8D /* BSIPhotoViewController.xib */; };
+		05C3FEA71AE0321200DAB39D /* AGTCoreDataCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C3FEA61AE0321200DAB39D /* AGTCoreDataCollectionViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,13 +104,31 @@
 		054E4FB81AD90CBB00BD1F0E /* BookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookViewController.h; sourceTree = "<group>"; };
 		054E4FB91AD90CBB00BD1F0E /* BookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookViewController.m; sourceTree = "<group>"; };
 		054E4FBA1AD90CBB00BD1F0E /* BookViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookViewController.xib; sourceTree = "<group>"; };
-		054E4FBD1AD9495500BD1F0E /* BSINoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSINoteViewController.h; sourceTree = "<group>"; };
-		054E4FBE1AD9495500BD1F0E /* BSINoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSINoteViewController.m; sourceTree = "<group>"; };
 		054E4FC01ADA638C00BD1F0E /* UIViewController+Navigation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Navigation.h"; sourceTree = "<group>"; };
 		054E4FC11ADA638C00BD1F0E /* UIViewController+Navigation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Navigation.m"; sourceTree = "<group>"; };
 		054E4FC41ADA64F900BD1F0E /* Settings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
 		054E4FC51ADA688200BD1F0E /* AGTCoreDataStack+AGTCoreDataStack_DownloadedData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AGTCoreDataStack+AGTCoreDataStack_DownloadedData.h"; sourceTree = "<group>"; };
 		054E4FC61ADA688200BD1F0E /* AGTCoreDataStack+AGTCoreDataStack_DownloadedData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AGTCoreDataStack+AGTCoreDataStack_DownloadedData.m"; sourceTree = "<group>"; };
+		054E6C041AE4175F006A9D67 /* BSINoteCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BSINoteCollectionViewCell.xib; sourceTree = "<group>"; };
+		054E6C061AE41978006A9D67 /* BSINoteCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSINoteCollectionViewCell.h; sourceTree = "<group>"; };
+		054E6C071AE41978006A9D67 /* BSINoteCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSINoteCollectionViewCell.m; sourceTree = "<group>"; };
+		054E6C091AE41BC8006A9D67 /* BSINotesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSINotesViewController.h; sourceTree = "<group>"; };
+		054E6C0A1AE41BC8006A9D67 /* BSINotesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSINotesViewController.m; sourceTree = "<group>"; };
+		056F031D1AE66E9C00CA2C07 /* Model 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 2.xcdatamodel"; sourceTree = "<group>"; };
+		056F031E1AE6F60900CA2C07 /* _BSILocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _BSILocation.h; sourceTree = "<group>"; };
+		056F031F1AE6F60900CA2C07 /* _BSILocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _BSILocation.m; sourceTree = "<group>"; };
+		056F03211AE6F61600CA2C07 /* BSILocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSILocation.h; sourceTree = "<group>"; };
+		056F03221AE6F61600CA2C07 /* BSILocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSILocation.m; sourceTree = "<group>"; };
+		0580923D1AE441AB00A92B8D /* noImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noImage.png; sourceTree = "<group>"; };
+		0580923F1AE4F80C00A92B8D /* BSINoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSINoteViewController.h; sourceTree = "<group>"; };
+		058092401AE4F80C00A92B8D /* BSINoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSINoteViewController.m; sourceTree = "<group>"; };
+		058092411AE4F80C00A92B8D /* BSINoteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BSINoteViewController.xib; sourceTree = "<group>"; };
+		058092441AE4FA7400A92B8D /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		058092461AE65E4600A92B8D /* BSIPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSIPhotoViewController.h; sourceTree = "<group>"; };
+		058092471AE65E4600A92B8D /* BSIPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSIPhotoViewController.m; sourceTree = "<group>"; };
+		058092481AE65E4600A92B8D /* BSIPhotoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BSIPhotoViewController.xib; sourceTree = "<group>"; };
+		05C3FEA51AE0321200DAB39D /* AGTCoreDataCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTCoreDataCollectionViewController.h; sourceTree = "<group>"; };
+		05C3FEA61AE0321200DAB39D /* AGTCoreDataCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTCoreDataCollectionViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +136,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				058092451AE4FA7400A92B8D /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -123,6 +153,8 @@
 		05387AD11AD7CA2200F9954E = {
 			isa = PBXGroup;
 			children = (
+				058092441AE4FA7400A92B8D /* MapKit.framework */,
+				0580923D1AE441AB00A92B8D /* noImage.png */,
 				05387ADC1AD7CA2200F9954E /* hackersBookCoreDate */,
 				05387AF61AD7CA2300F9954E /* hackersBookCoreDateTests */,
 				05387ADB1AD7CA2200F9954E /* Products */,
@@ -141,6 +173,7 @@
 		05387ADC1AD7CA2200F9954E /* hackersBookCoreDate */ = {
 			isa = PBXGroup;
 			children = (
+				054E6C031AE4172D006A9D67 /* Views */,
 				054E4FC31ADA639100BD1F0E /* Categories */,
 				05387B321AD8468400F9954E /* Controllers */,
 				05387B031AD7CAA700F9954E /* Models */,
@@ -183,6 +216,8 @@
 		05387B031AD7CAA700F9954E /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				056F03211AE6F61600CA2C07 /* BSILocation.h */,
+				056F03221AE6F61600CA2C07 /* BSILocation.m */,
 				05387B231AD7D26D00F9954E /* BSIAuthor.h */,
 				05387B241AD7D26D00F9954E /* BSIAuthor.m */,
 				05387B251AD7D26D00F9954E /* BSINote.h */,
@@ -208,6 +243,8 @@
 		05387B1C1AD7D23D00F9954E /* Machine */ = {
 			isa = PBXGroup;
 			children = (
+				056F031E1AE6F60900CA2C07 /* _BSILocation.h */,
+				056F031F1AE6F60900CA2C07 /* _BSILocation.m */,
 				05387B181AD7D23700F9954E /* _BSIBook.h */,
 				05387B191AD7D23700F9954E /* _BSITag.h */,
 				05387B1A1AD7D23700F9954E /* _BSITag.m */,
@@ -227,6 +264,8 @@
 		05387B321AD8468400F9954E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				05C3FEA51AE0321200DAB39D /* AGTCoreDataCollectionViewController.h */,
+				05C3FEA61AE0321200DAB39D /* AGTCoreDataCollectionViewController.m */,
 				05387B331AD846B100F9954E /* AGTCoreDataTableViewController.h */,
 				05387B341AD846B100F9954E /* AGTCoreDataTableViewController.m */,
 				05387B361AD846EF00F9954E /* BSIBooksViewController.h */,
@@ -234,8 +273,14 @@
 				054E4FB81AD90CBB00BD1F0E /* BookViewController.h */,
 				054E4FB91AD90CBB00BD1F0E /* BookViewController.m */,
 				054E4FBA1AD90CBB00BD1F0E /* BookViewController.xib */,
-				054E4FBD1AD9495500BD1F0E /* BSINoteViewController.h */,
-				054E4FBE1AD9495500BD1F0E /* BSINoteViewController.m */,
+				054E6C091AE41BC8006A9D67 /* BSINotesViewController.h */,
+				054E6C0A1AE41BC8006A9D67 /* BSINotesViewController.m */,
+				0580923F1AE4F80C00A92B8D /* BSINoteViewController.h */,
+				058092401AE4F80C00A92B8D /* BSINoteViewController.m */,
+				058092411AE4F80C00A92B8D /* BSINoteViewController.xib */,
+				058092461AE65E4600A92B8D /* BSIPhotoViewController.h */,
+				058092471AE65E4600A92B8D /* BSIPhotoViewController.m */,
+				058092481AE65E4600A92B8D /* BSIPhotoViewController.xib */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -249,6 +294,16 @@
 				054E4FC61ADA688200BD1F0E /* AGTCoreDataStack+AGTCoreDataStack_DownloadedData.m */,
 			);
 			name = Categories;
+			sourceTree = "<group>";
+		};
+		054E6C031AE4172D006A9D67 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				054E6C041AE4175F006A9D67 /* BSINoteCollectionViewCell.xib */,
+				054E6C061AE41978006A9D67 /* BSINoteCollectionViewCell.h */,
+				054E6C071AE41978006A9D67 /* BSINoteCollectionViewCell.m */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -332,8 +387,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				05387AEE1AD7CA2300F9954E /* LaunchScreen.xib in Resources */,
+				054E6C051AE4175F006A9D67 /* BSINoteCollectionViewCell.xib in Resources */,
+				0580923E1AE441AB00A92B8D /* noImage.png in Resources */,
 				05387AEB1AD7CA2300F9954E /* Images.xcassets in Resources */,
 				054E4FBC1AD90CBB00BD1F0E /* BookViewController.xib in Resources */,
+				058092431AE4F80C00A92B8D /* BSINoteViewController.xib in Resources */,
+				0580924A1AE65E4600A92B8D /* BSIPhotoViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -353,11 +412,11 @@
 			files = (
 				05387B151AD7D22C00F9954E /* _BSINote.m in Sources */,
 				05387B1B1AD7D23700F9954E /* _BSITag.m in Sources */,
+				05C3FEA71AE0321200DAB39D /* AGTCoreDataCollectionViewController.m in Sources */,
 				054E4FC21ADA638C00BD1F0E /* UIViewController+Navigation.m in Sources */,
 				05387B381AD846EF00F9954E /* BSIBooksViewController.m in Sources */,
 				05387AE31AD7CA2300F9954E /* AppDelegate.m in Sources */,
 				05387B311AD7D2EE00F9954E /* AGTCoreDataStack.m in Sources */,
-				054E4FBF1AD9495500BD1F0E /* BSINoteViewController.m in Sources */,
 				054E4FBB1AD90CBB00BD1F0E /* BookViewController.m in Sources */,
 				05387B2B1AD7D26D00F9954E /* BSIAuthor.m in Sources */,
 				05387B141AD7D22C00F9954E /* _BSIBook.m in Sources */,
@@ -367,13 +426,19 @@
 				05387AE01AD7CA2300F9954E /* main.m in Sources */,
 				05387B061AD7CAEF00F9954E /* Model.xcdatamodeld in Sources */,
 				05387B091AD7D14F00F9954E /* BSIHackersBookBaseClass.m in Sources */,
+				056F03231AE6F61600CA2C07 /* BSILocation.m in Sources */,
 				05387B2C1AD7D26D00F9954E /* BSINote.m in Sources */,
 				05387B171AD7D22C00F9954E /* _BSIPhoto.m in Sources */,
 				054E4FC71ADA688200BD1F0E /* AGTCoreDataStack+AGTCoreDataStack_DownloadedData.m in Sources */,
 				05387B2D1AD7D26D00F9954E /* BSIPdf.m in Sources */,
 				05387B2E1AD7D26D00F9954E /* BSIPhoto.m in Sources */,
+				058092421AE4F80C00A92B8D /* BSINoteViewController.m in Sources */,
+				058092491AE65E4600A92B8D /* BSIPhotoViewController.m in Sources */,
 				05387B211AD7D26400F9954E /* BSIBook.m in Sources */,
+				054E6C0B1AE41BC9006A9D67 /* BSINotesViewController.m in Sources */,
+				054E6C081AE41978006A9D67 /* BSINoteCollectionViewCell.m in Sources */,
 				05387B131AD7D22C00F9954E /* _BSIAuthor.m in Sources */,
+				056F03201AE6F60900CA2C07 /* _BSILocation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -579,6 +644,7 @@
 		05387B041AD7CAEF00F9954E /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				056F031D1AE66E9C00CA2C07 /* Model 2.xcdatamodel */,
 				05387B051AD7CAEF00F9954E /* Model.xcdatamodel */,
 			);
 			currentVersion = 05387B051AD7CAEF00F9954E /* Model.xcdatamodel */;
