@@ -39,27 +39,21 @@
     [self configureFirstAppear];
 
     //[self addDummyData];
-    NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[BSITag entityName]];
-    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:BSITagAttributes.name
-                                                          ascending:YES
-                                                           selector:@selector(caseInsensitiveCompare:)]];
-    req.fetchBatchSize = 20;
-    NSFetchedResultsController *fc = [[NSFetchedResultsController alloc] initWithFetchRequest:req
-                                                                         managedObjectContext:self.stack.context
-                                                                           sectionNameKeyPath:BSITagAttributes.name
-                                                                                    cacheName:nil];
-    
-    BSIBooksViewController *bsVC = [[BSIBooksViewController alloc] initWithFetchedResultsController:fc
-                                                                                             style:UITableViewStylePlain];
-    BookViewController *bVC= [self bookViewControllerWithLastBook];
-    bsVC.delegate = bVC;
-    UISplitViewController *split = [[UISplitViewController alloc]init];
-    split.viewControllers=@[[bsVC wrappedInNavigation],[bVC wrappedInNavigation]];
-    
-    self.window.rootViewController = split;
+    // Detectamos el tipo de pantalla
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        
+        // Tipo tableta
+        [self configureForPad];
+    }else{
+        // Tipo teléfono
+        [self configureForPhone];
+        
+    }
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
+    [self autoSave];
 
     return YES;
 }
@@ -94,81 +88,81 @@
 }
 
 -(void) addDummyData{
-    
-    [self.stack zapAllData];
-    
-    BSITag *tag1 = [BSITag tagWithName:@"version Control"
-                               context:self.stack.context];
-    BSITag *tag2 = [BSITag tagWithName:@"git"
-                               context:self.stack.context];
-    NSSet *tags = [NSSet setWithObjects:tag1, tag2, nil];
-    
-    BSIAuthor *a1 = [BSIAuthor authorWithName:@"Scott Chacon"
-                                      context:self.stack.context];
-    BSIAuthor *a2 = [BSIAuthor authorWithName:@"Ben Straub"
-                                      context:self.stack.context];
-    NSSet *authors = [NSSet setWithObjects:a1, a2, nil];
-    
-    BSIBook *b1 = [BSIBook bookWithTitle:@"Pro Git"
-                            frontPageURL:@"http://hackershelf.com/media/cache/b4/24/b42409de128aa7f1c9abbbfa549914de.jpg"
-                                  pdfURL:@"https://progit2.s3.amazonaws.com/en/2015-03-06-439c2/progit-en.376.pdf"
-                              isFavorite:NO
-                                    tags:tags
-                                 authors:authors
-                                 context:self.stack.context];
-    b1.frontPage.imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:b1.frontPageURL]];
-    
-    BSINote *n1 = [BSINote noteWithname:@"n1"
-                                   text:@"texto de n1"
-                                  image:[BSIPhoto insertInManagedObjectContext:self.stack.context]
-                                   book:b1
-                                context:self.stack.context];
-    
-    BSINote *n2 = [BSINote noteWithname:@"n2"
-                                   text:@"texto de n2"
-                                  image:[BSIPhoto insertInManagedObjectContext:self.stack.context]
-                                   book:b1
-                                context:self.stack.context];
-    
-    NSLog(@" %@ \n %@", n1, n2);
-    
-    BSITag *tag3 = [BSITag tagWithName:@"git2"
-                               context:self.stack.context];
-    NSSet *tags2 = [NSSet setWithObjects:tag2, tag3, nil];
-    
-
-    
-    BSIBook *b2 = [BSIBook bookWithTitle:@"Pro Git2"
-                            frontPageURL:@"http://hackershelf.com/media/cache/b4/24/b42409de128aa7f1c9abbbfa549914de.jpg"
-                                  pdfURL:@"https://progit2.s3.amazonaws.com/en/2015-03-06-439c2/progit-en.376.pdf"
-                              isFavorite:NO
-                                    tags:tags
-                                 authors:authors
-                                 context:self.stack.context];
-    b1.frontPage.imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:b1.frontPageURL]];
-    
-    //Prueba de búsqueda
-    NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[BSINote entityName]];
-    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:BSINoteAttributes.name
-                                                          ascending:YES
-                                                           selector:@selector(caseInsensitiveCompare:)],
-                            [NSSortDescriptor sortDescriptorWithKey:BSINoteAttributes.modificationDate
-                                                          ascending:NO]];
-    req.fetchBatchSize = 20;
-    req.predicate = [NSPredicate predicateWithFormat:@"name = %@", n1.name];
-    NSArray *results = [self.stack executeFetchRequest:req
-                                            errorBlock:^(NSError *error) {
-                                                NSLog(@"error al buscar %@", error);
-                                            }];
-    NSLog(@"%@", results);
-    
-    //Borrar
-    //[self.stack.context deleteObject:n1];
-
-    //Guardar
-    [self.stack saveWithErrorBlock:^(NSError *error) {
-        NSLog(@"Error al guardar %@", error);
-    }];
+//    
+//    [self.stack zapAllData];
+//    
+//    BSITag *tag1 = [BSITag tagWithName:@"version Control"
+//                               context:self.stack.context];
+//    BSITag *tag2 = [BSITag tagWithName:@"git"
+//                               context:self.stack.context];
+//    NSSet *tags = [NSSet setWithObjects:tag1, tag2, nil];
+//    
+//    BSIAuthor *a1 = [BSIAuthor authorWithName:@"Scott Chacon"
+//                                      context:self.stack.context];
+//    BSIAuthor *a2 = [BSIAuthor authorWithName:@"Ben Straub"
+//                                      context:self.stack.context];
+//    NSSet *authors = [NSSet setWithObjects:a1, a2, nil];
+//    
+//    BSIBook *b1 = [BSIBook bookWithTitle:@"Pro Git"
+//                            frontPageURL:@"http://hackershelf.com/media/cache/b4/24/b42409de128aa7f1c9abbbfa549914de.jpg"
+//                                  pdfURL:@"https://progit2.s3.amazonaws.com/en/2015-03-06-439c2/progit-en.376.pdf"
+//                              isFavorite:NO
+//                                    tags:tags
+//                                 authors:authors
+//                                 context:self.stack.context];
+//    b1.frontPage.imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:b1.frontPageURL]];
+//    
+//    BSINote *n1 = [BSINote noteWithname:@"n1"
+//                                   text:@"texto de n1"
+//                                  image:[BSIPhoto insertInManagedObjectContext:self.stack.context]
+//                                   book:b1
+//                                context:self.stack.context];
+//    
+//    BSINote *n2 = [BSINote noteWithname:@"n2"
+//                                   text:@"texto de n2"
+//                                  image:[BSIPhoto insertInManagedObjectContext:self.stack.context]
+//                                   book:b1
+//                                context:self.stack.context];
+//    
+//    NSLog(@" %@ \n %@", n1, n2);
+//    
+//    BSITag *tag3 = [BSITag tagWithName:@"git2"
+//                               context:self.stack.context];
+//    NSSet *tags2 = [NSSet setWithObjects:tag2, tag3, nil];
+//    
+//
+//    
+//    BSIBook *b2 = [BSIBook bookWithTitle:@"Pro Git2"
+//                            frontPageURL:@"http://hackershelf.com/media/cache/b4/24/b42409de128aa7f1c9abbbfa549914de.jpg"
+//                                  pdfURL:@"https://progit2.s3.amazonaws.com/en/2015-03-06-439c2/progit-en.376.pdf"
+//                              isFavorite:NO
+//                                    tags:tags
+//                                 authors:authors
+//                                 context:self.stack.context];
+//    b1.frontPage.imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:b1.frontPageURL]];
+//    
+//    //Prueba de búsqueda
+//    NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[BSINote entityName]];
+//    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:BSINoteAttributes.name
+//                                                          ascending:YES
+//                                                           selector:@selector(caseInsensitiveCompare:)],
+//                            [NSSortDescriptor sortDescriptorWithKey:BSINoteAttributes.modificationDate
+//                                                          ascending:NO]];
+//    req.fetchBatchSize = 20;
+//    req.predicate = [NSPredicate predicateWithFormat:@"name = %@", n1.name];
+//    NSArray *results = [self.stack executeFetchRequest:req
+//                                            errorBlock:^(NSError *error) {
+//                                                NSLog(@"error al buscar %@", error);
+//                                            }];
+//    NSLog(@"%@", results);
+//    
+//    //Borrar
+//    //[self.stack.context deleteObject:n1];
+//
+//    //Guardar
+//    [self.stack saveWithErrorBlock:^(NSError *error) {
+//        NSLog(@"Error al guardar %@", error);
+//    }];
 }
 
 -(void)configureFirstAppear{
@@ -209,27 +203,68 @@
     
 }
 
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
+-(void) configureForPad{
+    
+    NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[BSITag entityName]];
+    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:BSITagAttributes.name
+                                                          ascending:YES
+                                                           selector:@selector(caseInsensitiveCompare:)]];
+    req.fetchBatchSize = 20;
+    NSFetchedResultsController *fc = [[NSFetchedResultsController alloc] initWithFetchRequest:req
+                                                                         managedObjectContext:self.stack.context
+                                                                           sectionNameKeyPath:BSITagAttributes.name
+                                                                                    cacheName:nil];
+    
+    BSIBooksViewController *bsVC = [[BSIBooksViewController alloc] initWithFetchedResultsController:fc
+                                                                                              style:UITableViewStylePlain];
+    BookViewController *bVC= [self bookViewControllerWithLastBook];
+    bsVC.delegate = bVC;
+    UISplitViewController *split = [[UISplitViewController alloc]init];
+    split.viewControllers=@[[bsVC wrappedInNavigation],[bVC wrappedInNavigation]];
+    
+    self.window.rootViewController = split;
+
+    
+}
+
+-(void) configureForPhone{
+    
+    NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[BSITag entityName]];
+    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:BSITagAttributes.name
+                                                          ascending:YES
+                                                           selector:@selector(caseInsensitiveCompare:)]];
+    req.fetchBatchSize = 20;
+    NSFetchedResultsController *fc = [[NSFetchedResultsController alloc] initWithFetchRequest:req
+                                                                         managedObjectContext:self.stack.context
+                                                                           sectionNameKeyPath:BSITagAttributes.name
+                                                                                    cacheName:nil];
+    
+    BSIBooksViewController *bsVC = [[BSIBooksViewController alloc] initWithFetchedResultsController:fc
+                                                                                              style:UITableViewStylePlain];
+    bsVC.delegate = bsVC;
+    
+    UINavigationController *navVC = [[UINavigationController alloc]initWithRootViewController:bsVC];
+    
+    self.window.rootViewController = navVC;
+    
+    
+}
+
+-(void) autoSave{
+    
+    if (AUTO_SAVE) {
+        NSLog(@"Autoguardando");
+        [self.stack saveWithErrorBlock:^(NSError *error) {
+            NSLog(@"Error al autoguardar!");
+        }];
+        
+        // Pongo en mi "agenda" una nueva llamada a autoSave
+        [self performSelector:@selector(autoSave)
+                   withObject:nil
+                   afterDelay:AUTO_SAVE_DELAY];
+        
+    }
+}
+
 
 @end

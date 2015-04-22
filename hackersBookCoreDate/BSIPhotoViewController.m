@@ -50,7 +50,7 @@
     //asignar delegado
     picker.delegate = self;
     picker.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    UIPopoverController *popOver = [[UIPopoverController alloc] initWithContentViewController:picker];
+    //UIPopoverController *popOver = [[UIPopoverController alloc] initWithContentViewController:picker];
     //mostrarlo
     [self presentViewController:picker
                        animated:YES

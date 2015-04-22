@@ -23,5 +23,6 @@
 - (IBAction)readBook:(id)sender;
 
 - (IBAction)changeStateFavorite:(id)sender;
+- (IBAction)displayNotes:(id)sender;
 
 @end

@@ -20,14 +20,6 @@
 //key for search in userDefaults if the download is done
 #define DOWNLOAD_FINISH @"downloadFinish"
 
-
-
-
-
-
-
-//#define BOOK_DID_CHANGE_NOTIFICATION_NAME @"bookDidChangeNotification"
-//#define BOOK_KEY @"bookKey"
-//#define BOOK_DID_SELECTED_NOTIFICATION_NAME @"bookDidSelectedNotificationName"
-//#define BOOK_SELECTED_KEY @"bookSelectedKey"
-//
+//keys for autosave
+#define AUTO_SAVE NO
+#define AUTO_SAVE_DELAY 30

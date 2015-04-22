@@ -13,6 +13,8 @@
 #import "BSITag.h"
 #import "BSINote.h"
 #import "BSINotesViewController.h"
+#import "BSIPdf.h"
+#import "BSISimplePDFViewController.h"
 
 @interface BookViewController ()
 
@@ -48,38 +50,24 @@
 
 #pragma mark - actions
 - (IBAction)readBook:(id)sender {
-
-    //Crear el fetch request
-    NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[BSINote entityName]];
-    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:BSINoteAttributes.name
-                                                          ascending:YES],
-                            [NSSortDescriptor sortDescriptorWithKey:BSINoteAttributes.modificationDate
-                                                          ascending:NO],
-                            [NSSortDescriptor sortDescriptorWithKey:BSINoteAttributes.creationDate
-                                                          ascending:NO]];
-    req.predicate = [NSPredicate predicateWithFormat:@"book = %@", self.model];
-    //Crear el fetchedResultsController
-    NSFetchedResultsController *fc = [[NSFetchedResultsController alloc] initWithFetchRequest:req
-                                                                         managedObjectContext:self.model.managedObjectContext
-                                                                           sectionNameKeyPath:nil
-                                                                                    cacheName:nil];
-    //Crear el layout
-    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
-    layout.itemSize = CGSizeMake(140, 150);
-    layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-    layout.minimumLineSpacing = 10;
-    layout.minimumInteritemSpacing = 10;
-    layout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
     
+    if (self.model.pdf.pdfData == nil) {
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
+            
+            NSURL *jsonURL = [NSURL URLWithString:self.model.pdfURL];
+            NSData *data = [NSData dataWithContentsOfURL:jsonURL];
+            //cuando la tengo, me voy a primer plano
+            dispatch_async(dispatch_get_main_queue(), ^{
+                //introduzco en core data lo que me descargo
+                self.model.pdf.pdfData = data;
+            });
+            
+        });
+    }
     
-    //Crear el controlador de notas
-    BSINotesViewController *notesVC = [BSINotesViewController coreDataCollectionViewControllerWithFetchedResultsController:fc
-                                                                                                                    layout:layout];
-    notesVC.book = self.model;
-    
-    //lo pusheamos
-    [self.navigationController pushViewController:notesVC
+    [self.navigationController pushViewController:[[BSISimplePDFViewController alloc] initWithModel:self.model.pdf]
                                          animated:YES];
+    
 
 }
 
@@ -112,6 +100,40 @@
         [self.model.managedObjectContext deleteObject:[result lastObject]];
     }
     
+}
+
+- (IBAction)displayNotes:(id)sender {
+    //Crear el fetch request
+    NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[BSINote entityName]];
+    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:BSINoteAttributes.name
+                                                          ascending:YES],
+                            [NSSortDescriptor sortDescriptorWithKey:BSINoteAttributes.modificationDate
+                                                          ascending:NO],
+                            [NSSortDescriptor sortDescriptorWithKey:BSINoteAttributes.creationDate
+                                                          ascending:NO]];
+    req.predicate = [NSPredicate predicateWithFormat:@"book = %@", self.model];
+    //Crear el fetchedResultsController
+    NSFetchedResultsController *fc = [[NSFetchedResultsController alloc] initWithFetchRequest:req
+                                                                         managedObjectContext:self.model.managedObjectContext
+                                                                           sectionNameKeyPath:nil
+                                                                                    cacheName:nil];
+    //Crear el layout
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
+    layout.itemSize = CGSizeMake(140, 150);
+    layout.scrollDirection = UICollectionViewScrollDirectionVertical;
+    layout.minimumLineSpacing = 10;
+    layout.minimumInteritemSpacing = 10;
+    layout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
+    
+    
+    //Crear el controlador de notas
+    BSINotesViewController *notesVC = [BSINotesViewController coreDataCollectionViewControllerWithFetchedResultsController:fc
+                                                                                                                    layout:layout];
+    notesVC.book = self.model;
+    
+    //lo pusheamos
+    [self.navigationController pushViewController:notesVC
+                                         animated:YES];
 }
 
 #pragma mark - delegates

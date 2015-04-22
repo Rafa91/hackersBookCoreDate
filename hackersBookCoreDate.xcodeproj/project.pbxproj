@@ -29,6 +29,11 @@
 		05387B311AD7D2EE00F9954E /* AGTCoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 05387B2F1AD7D2EE00F9954E /* AGTCoreDataStack.m */; };
 		05387B351AD846B100F9954E /* AGTCoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05387B341AD846B100F9954E /* AGTCoreDataTableViewController.m */; };
 		05387B381AD846EF00F9954E /* BSIBooksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05387B371AD846EF00F9954E /* BSIBooksViewController.m */; };
+		053943381AE7A7E100E4BA44 /* BookViewController~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 053943371AE7A7E100E4BA44 /* BookViewController~iphone.xib */; };
+		0539433A1AE7A80E00E4BA44 /* BSINoteViewController~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 053943391AE7A80E00E4BA44 /* BSINoteViewController~iphone.xib */; };
+		0539433C1AE7A82900E4BA44 /* BSIPhotoViewController~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0539433B1AE7A82900E4BA44 /* BSIPhotoViewController~iphone.xib */; };
+		053943401AE7B17600E4BA44 /* BSISimplePDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0539433E1AE7B17600E4BA44 /* BSISimplePDFViewController.m */; };
+		053943411AE7B17600E4BA44 /* BSISimplePDFViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0539433F1AE7B17600E4BA44 /* BSISimplePDFViewController.xib */; };
 		054E4FBB1AD90CBB00BD1F0E /* BookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 054E4FB91AD90CBB00BD1F0E /* BookViewController.m */; };
 		054E4FBC1AD90CBB00BD1F0E /* BookViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 054E4FBA1AD90CBB00BD1F0E /* BookViewController.xib */; };
 		054E4FC21ADA638C00BD1F0E /* UIViewController+Navigation.m in Sources */ = {isa = PBXBuildFile; fileRef = 054E4FC11ADA638C00BD1F0E /* UIViewController+Navigation.m */; };
@@ -101,6 +106,12 @@
 		05387B341AD846B100F9954E /* AGTCoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTCoreDataTableViewController.m; sourceTree = "<group>"; };
 		05387B361AD846EF00F9954E /* BSIBooksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSIBooksViewController.h; sourceTree = "<group>"; };
 		05387B371AD846EF00F9954E /* BSIBooksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSIBooksViewController.m; sourceTree = "<group>"; };
+		053943371AE7A7E100E4BA44 /* BookViewController~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "BookViewController~iphone.xib"; sourceTree = "<group>"; };
+		053943391AE7A80E00E4BA44 /* BSINoteViewController~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "BSINoteViewController~iphone.xib"; sourceTree = "<group>"; };
+		0539433B1AE7A82900E4BA44 /* BSIPhotoViewController~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "BSIPhotoViewController~iphone.xib"; sourceTree = "<group>"; };
+		0539433D1AE7B17600E4BA44 /* BSISimplePDFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSISimplePDFViewController.h; sourceTree = "<group>"; };
+		0539433E1AE7B17600E4BA44 /* BSISimplePDFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSISimplePDFViewController.m; sourceTree = "<group>"; };
+		0539433F1AE7B17600E4BA44 /* BSISimplePDFViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BSISimplePDFViewController.xib; sourceTree = "<group>"; };
 		054E4FB81AD90CBB00BD1F0E /* BookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookViewController.h; sourceTree = "<group>"; };
 		054E4FB91AD90CBB00BD1F0E /* BookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookViewController.m; sourceTree = "<group>"; };
 		054E4FBA1AD90CBB00BD1F0E /* BookViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookViewController.xib; sourceTree = "<group>"; };
@@ -264,6 +275,9 @@
 		05387B321AD8468400F9954E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				0539433D1AE7B17600E4BA44 /* BSISimplePDFViewController.h */,
+				0539433E1AE7B17600E4BA44 /* BSISimplePDFViewController.m */,
+				0539433F1AE7B17600E4BA44 /* BSISimplePDFViewController.xib */,
 				05C3FEA51AE0321200DAB39D /* AGTCoreDataCollectionViewController.h */,
 				05C3FEA61AE0321200DAB39D /* AGTCoreDataCollectionViewController.m */,
 				05387B331AD846B100F9954E /* AGTCoreDataTableViewController.h */,
@@ -281,6 +295,9 @@
 				058092461AE65E4600A92B8D /* BSIPhotoViewController.h */,
 				058092471AE65E4600A92B8D /* BSIPhotoViewController.m */,
 				058092481AE65E4600A92B8D /* BSIPhotoViewController.xib */,
+				053943371AE7A7E100E4BA44 /* BookViewController~iphone.xib */,
+				053943391AE7A80E00E4BA44 /* BSINoteViewController~iphone.xib */,
+				0539433B1AE7A82900E4BA44 /* BSIPhotoViewController~iphone.xib */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -386,11 +403,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0539433C1AE7A82900E4BA44 /* BSIPhotoViewController~iphone.xib in Resources */,
 				05387AEE1AD7CA2300F9954E /* LaunchScreen.xib in Resources */,
+				053943381AE7A7E100E4BA44 /* BookViewController~iphone.xib in Resources */,
+				0539433A1AE7A80E00E4BA44 /* BSINoteViewController~iphone.xib in Resources */,
 				054E6C051AE4175F006A9D67 /* BSINoteCollectionViewCell.xib in Resources */,
 				0580923E1AE441AB00A92B8D /* noImage.png in Resources */,
 				05387AEB1AD7CA2300F9954E /* Images.xcassets in Resources */,
 				054E4FBC1AD90CBB00BD1F0E /* BookViewController.xib in Resources */,
+				053943411AE7B17600E4BA44 /* BSISimplePDFViewController.xib in Resources */,
 				058092431AE4F80C00A92B8D /* BSINoteViewController.xib in Resources */,
 				0580924A1AE65E4600A92B8D /* BSIPhotoViewController.xib in Resources */,
 			);
@@ -434,6 +455,7 @@
 				05387B2E1AD7D26D00F9954E /* BSIPhoto.m in Sources */,
 				058092421AE4F80C00A92B8D /* BSINoteViewController.m in Sources */,
 				058092491AE65E4600A92B8D /* BSIPhotoViewController.m in Sources */,
+				053943401AE7B17600E4BA44 /* BSISimplePDFViewController.m in Sources */,
 				05387B211AD7D26400F9954E /* BSIBook.m in Sources */,
 				054E6C0B1AE41BC9006A9D67 /* BSINotesViewController.m in Sources */,
 				054E6C081AE41978006A9D67 /* BSINoteCollectionViewCell.m in Sources */,
